@@ -55,9 +55,10 @@ RUN apk add --no-cache \
 #    curl https://packages.microsoft.com/config/debian/$(. /etc/os-release; echo "$VERSION_ID")/prod.list > /etc/apt/sources.list.d/mssql-release.list && \
 #    apt update && \
 #    ACCEPT_EULA=Y apt install -y --no-install-recommends msodbcsql17
-RUN wget https://download.microsoft.com/download/e/4/e/e4e67866-dffd-428c-aac7-8d28ddafb39b/msodbcsql17_17.7.2.1-1_amd64.apk &&\
-    wget https://download.microsoft.com/download/e/4/e/e4e67866-dffd-428c-aac7-8d28ddafb39b/mssql-tools_17.7.1.1-1_amd64.apk &&\
-    apk add --allow-untrusted msodbcsql17_17.7.2.1-1_amd64.apk &&\
+#RUN wget https://download.microsoft.com/download/e/4/e/e4e67866-dffd-428c-aac7-8d28ddafb39b/msodbcsql17_17.7.2.1-1_amd64.apk &&\
+#    wget https://download.microsoft.com/download/e/4/e/e4e67866-dffd-428c-aac7-8d28ddafb39b/mssql-tools_17.7.1.1-1_amd64.apk &&\
+COPY apk/* /
+RUN apk add --allow-untrusted msodbcsql17_17.7.2.1-1_amd64.apk &&\
     apk add --allow-untrusted mssql-tools_17.7.1.1-1_amd64.apk
 
 COPY --from=build-image /virtualenv /virtualenv

@@ -8,10 +8,10 @@ RUN apk add --no-cache --virtual \
 #    default-libmysqlclient-dev \
     mariadb-dev \
 #    libpq-dev \
-#    libpq \
-#    unixodbc-dev \
-
+    libpq \
     gcc \
+    g++ \
+    unixodbc-dev \
     linux-headers \
     libc-dev \
     unzip
@@ -24,10 +24,10 @@ RUN pip install \
      /srcdir \
 #    cx-Oracle \
 #    ibm-db-sa \
-     mysqlclient
+     mysqlclient \
 #    psycopg2-binary \
 #    psycopg2 \
-#    pyodbc
+     pyodbc
 
 #`RUN curl \
 #    https://download.oracle.com/otn_software/linux/instantclient/instantclient-basiclite-linuxx64.zip \
@@ -45,11 +45,11 @@ RUN apk add --no-cache \
 #    apt install -y --no-install-recommends \
     curl \
     gnupg \
-#    libaio1 \
+    libaio \
 #    libmariadb-dev-compat \
     mariadb-dev \
-#    libodbc1 \
-#    libpq5 \
+    unixodbc \
+    libpq \
     libxml2
 #    curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.gpg && \
 #    curl https://packages.microsoft.com/config/debian/$(. /etc/os-release; echo "$VERSION_ID")/prod.list > /etc/apt/sources.list.d/mssql-release.list && \

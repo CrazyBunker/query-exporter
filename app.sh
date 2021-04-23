@@ -10,6 +10,5 @@ for i in $(env | grep DSN_ ); do
    echo "    dsn: \"$CONN\"" >> $_CONFIG_NEW
    echo "    autocommit: false" >> $_CONFIG_NEW
 done
-cat /etc/config.yaml.new
 query-exporter $@
 

@@ -1,5 +1,5 @@
 #!/bin/sh
-_CONFIG_NEW="/etc/config.yaml.new"
+_CONFIG_NEW="/etc/exporter/config.yaml.new"
 cp /etc/exporter/config.yaml $_CONFIG_NEW
 echo "databases:" >> $_CONFIG_NEW
 for i in $(env | grep DSN_ ); do

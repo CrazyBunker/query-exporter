@@ -26,7 +26,7 @@ RUN pip install \
 #    ibm-db-sa \
      mysqlclient \
 #    psycopg2-binary \
-#    psycopg2 \
+#     pycopg \
      pyodbc
 
 #`RUN curl \
@@ -63,11 +63,11 @@ RUN apk add --allow-untrusted msodbcsql17_17.7.2.1-1_amd64.apk &&\
 
 COPY --from=build-image /virtualenv /virtualenv
 COPY --from=build-image /opt /opt
-
+COPY app.sh /virtualenv/bin/app.sh
 ENV PATH="/virtualenv/bin:$PATH"
 ENV VIRTUAL_ENV="/virtualenv"
 ENV LD_LIBRARY_PATH="/opt/oracle/instantclient"
 
 EXPOSE 9560/tcp
 # IPv6 support is not enabled by default, only bind IPv4
-ENTRYPOINT ["query-exporter", "/etc/exporter/config.yaml", "-H", "0.0.0.0"]
+ENTRYPOINT ["app.sh", "/etc/config.yaml.new", "-H", "0.0.0.0"]
